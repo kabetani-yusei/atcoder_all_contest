@@ -14,3 +14,8 @@ https://kankisenkowasuo.hatenablog.com/entry/2024/09/25/001415
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 ```
+
+## debug方法
+problem.inが入力になるため、事前に入力を決めておく
+1. ctrl + Shift + Bでビルドする
+2. F5でデバッグを開始すればできる
