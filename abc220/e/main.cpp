@@ -29,23 +29,24 @@ using Graph = vector<vector<Edge>>;
 using mint = modint998244353;
 
 int main(){
-    int n, d;
+    int n,d;
     cin >> n >> d;
-    vector<mint> pow2(n*2+1, 1);
-    rep(i,1,n*2+1) pow2[i] = pow2[i-1] * 2;
-
+    vector<mint> pow2(n*2+3, 1);
+    rep(i, 1, n*2+3) pow2[i] = pow2[i-1] * 2;
     mint ans=0;
-    rep(n){
-        mint tmp;
-        if(i+d < n) tmp = pow2[d+1];
-        else tmp = 0;
-
-        mint tmp2;
-        if(2*(n-1-i) < d || d == 1) tmp2 = 0;
-        else if(i+d < n) tmp2 = pow2[d-1] * (d-1);
-        else tmp2 = pow2[d-1] * (2*n-2*i-d-1);
-
-        ans += pow2[i] * (tmp + tmp2);
+    rep(depth, n){
+        //パターン1
+        if(depth + d < n){
+            ans += pow2[depth+d+1];
+        }
+        //パターン2
+        if(d == 1 || depth + ((d + 1) / 2) >= n){
+            ans += 0;
+        }else if(depth + (d-1) < n){
+            ans += pow2[depth + d - 1] * (d-1);
+        }else{
+            ans += pow2[depth + d - 1] * (2*n-1-2*depth-d);
+        }
     }
-    cout << ans.val() << endl;
+    cout << ans.val() << '\n';
 }   
