@@ -1,4 +1,4 @@
-# 競技プログラミング精進[melo25](https://atcoder.jp/users/melo25)
+# 競技プログラミング精進（ユーザー：[melo25](https://atcoder.jp/users/melo25)）
 ## acc 使い方
 ```
 acc new abc212
