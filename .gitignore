@@ -14,3 +14,6 @@ ex
 problem.exe
 problem.in
 document_ja
+venv
+tests
+run.sh

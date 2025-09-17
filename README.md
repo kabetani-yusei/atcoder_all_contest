@@ -4,10 +4,11 @@
 acc new abc212
 
 g++ main.cpp -std=c++17 -I .
-oj t -c "./a.out" -d ./test/  
+oj t -c "./a.out" -d ./tests/  
 ```
 ## 参考url
 https://kankisenkowasuo.hatenablog.com/entry/2024/09/25/001415
+https://zenn.dev/fro25zen/articles/atcoder_setup_article
 
 ## いつもの
 ```
