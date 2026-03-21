@@ -21,6 +21,9 @@ oj t -c "./a.out" -d ./tests/
 https://kankisenkowasuo.hatenablog.com/entry/2024/09/25/001415
 https://zenn.dev/fro25zen/articles/atcoder_setup_article
 
+## acc loginができなくなったら
+https://kaiyou9.com/acc_and_oj_login_failed/
+
 ## いつもの
 ```
 #pragma GCC target("avx2")
