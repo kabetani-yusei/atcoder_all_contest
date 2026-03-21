@@ -32,6 +32,19 @@ ll modpow(ll base, ll exp, ll mod) {
     return result;
 }
 
+// 愚直な素因数分解
+vector<int> pfact(int x){
+    vector<int> res;
+    for(int i=2;i*i<=x;i++){
+        while(x%i==0){
+            x/=i;
+            res.push_back(i);
+        }
+    }
+    if(x!=1){res.push_back(x);}
+    return res;
+}
+
 // Miller-Rabin 法による素数判定
 bool is_prime(ll n) {
     if(n == 2) return true;
