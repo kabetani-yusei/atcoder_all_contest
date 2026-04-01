@@ -25,6 +25,29 @@ vector<int> pfact(int x){
     return res;
 }
 
+// 線形篩
+// maxp以下の素数リストを返す
+vector<ll> prime_list;
+void construct_plist(ll maxp) {
+    maxp++;
+    vector<bool> is_prime(maxp, true);
+    is_prime[0] = is_prime[1] = false;
+
+    for (int i = 2; i < maxp; i++) {
+        if (is_prime[i]) {
+            prime_list.push_back(i);
+        }
+        for (int j = 0; j < (int)prime_list.size(); j++) {
+            ll p = prime_list[j];
+            if (i * p >= maxp) break;
+
+            is_prime[i * p] = false;
+
+            if (i % p == 0) break;
+        }
+    }
+}
+
 // オーバーフロー対策のため __int128 を用いた乗算 (mod 演算付き)
 ll modmul(ll a, ll b, ll mod) {
     ll t = a;
