@@ -13,9 +13,9 @@ ll gcd(ll a, ll b) {
 }
 
 // 愚直な素因数分解
-vector<int> pfact(int x){
-    vector<int> res;
-    for(int i=2;i*i<=x;i++){
+vector<ll> pfact(ll x){
+    vector<ll> res;
+    for(ll i=2;i<=x/i;i++){
         while(x%i==0){
             x/=i;
             res.push_back(i);
@@ -29,6 +29,10 @@ vector<int> pfact(int x){
 // maxp以下の素数リストを返す
 vector<ll> prime_list;
 void construct_plist(ll maxp) {
+    if (maxp < 2) {
+        prime_list.clear();
+        return;
+    }
     maxp++;
     vector<bool> is_prime(maxp, true);
     is_prime[0] = is_prime[1] = false;
@@ -48,11 +52,16 @@ void construct_plist(ll maxp) {
     }
 }
 
+
+/*
+
+ここからは高速に素因数分解するやつ
+
+*/
+
 // オーバーフロー対策のため __int128 を用いた乗算 (mod 演算付き)
 ll modmul(ll a, ll b, ll mod) {
-    ll t = a;
-    t = (t * b) % mod;
-    return t;
+    return (__int128)a * b % mod;
 }
 
 // 繰り返し二乗法による高速な mod 累乗
@@ -78,7 +87,7 @@ bool is_prime(ll n) {
     int s = __builtin_ctzll(lsb);  // lsb = 2^s であるため，s を取得
     ll d = m / lsb;
     
-    vector<ll> test_numbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
+    vector<ll> test_numbers = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
     for(ll a : test_numbers) {
         if(a == n) continue;
         ll x = modpow(a, d, n);
@@ -152,38 +161,18 @@ ll find_prime_factor(ll n) {
 }
 
 // 素因数分解：結果を map (素因数, 指数) として返す
-map<ll, int> factorize(ll n) {
-    map<ll, int> res;
+map<ll, ll> factorize(ll n) {
+    map<ll, ll> res;
     while(n > 1 && !is_prime(n)) {
         ll p = find_prime_factor(n);
-        int s = 0;
+        ll s = 0;
         while(n % p == 0) {
             n /= p;
             s++;
         }
-        res[p] = s;
+        res[p] += s;
     }
     if(n > 1)
         res[n] = 1;
     return res;
-}
-
-int main(){
-    ll n;
-    cout << "分解する整数を入力してください: ";
-    cin >> n;
-    
-    map<ll, int> factors = factorize(n);
-    cout << n << " = ";
-    bool first = true;
-    for(auto &pf : factors) {
-        if(!first)
-            cout << " * ";
-        first = false;
-        cout << pf.first;
-        if(pf.second > 1)
-            cout << "^" << pf.second;
-    }
-    cout << endl;
-    return 0;
 }
