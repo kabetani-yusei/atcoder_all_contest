@@ -3,7 +3,9 @@ s = input()
 # カンマで分割して空白を除去
 items = [x.strip() for x in s.split(",")]
 
-# シングルクオート付きで出力（set形式）
-result = "{" + ", ".join(f"'{x}'" for x in items) + "}"
+# 要素に1つでも2文字以上があれば全部ダブルクオート
+quote = '"' if any(len(x) >= 2 for x in items) else "'"
+
+result = "{" + ", ".join(f"{quote}{x}{quote}" for x in items) + "}"
 
 print(result)
