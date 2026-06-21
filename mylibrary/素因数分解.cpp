@@ -80,7 +80,9 @@ ll modpow(ll base, ll exp, ll mod) {
 // Miller-Rabin 法による素数判定
 bool is_prime(ll n) {
     if(n == 2) return true;
-    if(n == 1 || n % 2 == 0) return false;
+    if(n < 2) return false;
+    if(n == 2) return true;
+    if(n % 2 == 0) return false;
     ll m = n - 1;
     // m = 2^s * d とする．lsb は m の最下位ビット (2 の累乗部分)
     ll lsb = m & -m;
@@ -89,7 +91,7 @@ bool is_prime(ll n) {
     
     vector<ll> test_numbers = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
     for(ll a : test_numbers) {
-        if(a == n) continue;
+        if(a % n == 0) continue;
         ll x = modpow(a, d, n);
         if(x == 1) continue;
         int r = 0;

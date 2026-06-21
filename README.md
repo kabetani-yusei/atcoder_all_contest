@@ -14,7 +14,7 @@
 ```
 acc new abc212
 
-g++ main.cpp -std=c++17 -I .
+g++ main.cpp -std=c++20 -I .
 oj t -c "./a.out" -d ./tests/  
 ```
 ## 参考url
