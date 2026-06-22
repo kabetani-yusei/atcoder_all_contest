@@ -55,4 +55,24 @@ int main(){
             }
         }
     }
+    /*
+    // 2次元座標の場合
+    queue<pair<int,int>> que;
+    vector<vector<int>> seen(h, vector<int>(w, -1));
+    que.push(s);
+    seen[s.first][s.second] = 0;
+    while (!que.empty()) {
+        auto [x, y] = que.front();
+        que.pop();
+        rep(k, 4) {
+            int nx = x + dx[k];
+            int ny = y + dy[k];
+
+            if (0 <= nx && nx < h && 0 <= ny && ny < w && (seen[nx][ny] == -1 || seen[nx][ny] > seen[x][y] + 1)) {
+                seen[nx][ny] = seen[x][y] + 1;
+                que.push({nx, ny});
+            }
+        }
+    }
+    */
 }   
