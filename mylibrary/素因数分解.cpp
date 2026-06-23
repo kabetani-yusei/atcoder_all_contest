@@ -81,7 +81,6 @@ ll modpow(ll base, ll exp, ll mod) {
 bool is_prime(ll n) {
     if(n == 2) return true;
     if(n < 2) return false;
-    if(n == 2) return true;
     if(n % 2 == 0) return false;
     ll m = n - 1;
     // m = 2^s * d とする．lsb は m の最下位ビット (2 の累乗部分)
