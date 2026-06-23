@@ -31,44 +31,40 @@ void yesno(bool b){ouc(b ? "Yes" : "No");}
 
 
 int main(){
-    int n, m;
-    cin >> n >> m;
-    vector<vector<int>> g(n);
-    vector<int> indeg(n, 0);
-    rep(m){
-        int u, v;
-        cin >> u >> v;
-        u--; v--;
-        // u -> v
-        g[u].push_back(v);
-        indeg[v]++;
-    }
+    int h,w;
+    cin >> h >> w;
+    vector<string> a(h);
+    rep(h) cin >> a[i];
 
-    queue<int> que;
-    rep(i, n){
-        if(indeg[i] == 0){
-            que.push(i);
-        }
-    }
-
-    vector<int> topo;
-    while(!que.empty()){
-        int now = que.front();
-        que.pop();
-        topo.push_back(now);
-        for(auto nex : g[now]){
-            indeg[nex]--;
-            if(indeg[nex] == 0){
-                que.push(nex);
+    pair<int,int> start, goal;
+    rep(h){
+        rep(j,w){
+            if(a[i][j] == 'S'){
+                start = {i,j};
+            }else if(a[i][j] == 'G'){
+                goal = {i,j};
             }
         }
     }
 
-    // 閉路がある場合、全頂点を並べられない
-    if((int)topo.size() != n){
-        ouc(-1);
-        return 0;
-    }
+    queue<pair<int,int>> que;
+    vector<vector<int>> seen(h, vector<int>(w, -1));
+    que.push(start);
+    seen[start.first][start.second] = 0;
+    while (!que.empty()) {
+        auto [x, y] = que.front();
+        que.pop();
+        rep(k, 4) {
+            int nx = x + dx[k];
+            int ny = y + dy[k];
 
-    for(auto to: topo) cout << to+1 << " ";
-}
+            if (0 <= nx && nx < h && 0 <= ny && ny < w && a[nx][ny] != '#') {
+                if(seen[nx][ny] == -1 || seen[nx][ny] > seen[x][y] + 1){
+                    seen[nx][ny] = seen[x][y] + 1;
+                    que.push({nx, ny});
+                }
+            }
+        }
+    }
+    ouc(seen[goal.first][goal.second]);
+}   

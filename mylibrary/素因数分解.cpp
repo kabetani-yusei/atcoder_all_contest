@@ -29,8 +29,8 @@ vector<ll> pfact(ll x){
 // maxp以下の素数リストを返す
 vector<ll> prime_list;
 void construct_plist(ll maxp) {
+    prime_list.clear();
     if (maxp < 2) {
-        prime_list.clear();
         return;
     }
     maxp++;

@@ -37,8 +37,12 @@ bool hasCycleUndirected(vector<vector<int>>& g) {
     vector<int> seen(n, 0);
     auto dfs = [&](auto self, int v, int parent) -> bool {
         seen[v] = 1;
+        bool skipped_parent = false;
         for (auto nv : g[v]) {
-            if (nv == parent) continue;
+            if (nv == parent && !skipped_parent) {
+                skipped_parent = true;
+                continue;
+            }
             if (seen[nv]) return true;
             if (self(self, nv, v)) return true;
         }

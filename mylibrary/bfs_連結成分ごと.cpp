@@ -5,7 +5,7 @@ using namespace std;
 // using mint = modint998244353;
 #define ll long long
 #define ull unsigned long long
-const ll inf = 1e18;
+const ll inf = 4'000'000'000'000'000'000LL; // 4e18
 const int dx[] = {0, 1, 0, -1, 1, 1, -1, -1};
 const int dy[] = {1, 0, -1, 0, 1, -1, 1, -1};
 #define bsearch(a,x) distance(a.begin(), lower_bound(all(a), x))
