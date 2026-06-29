@@ -17,3 +17,7 @@ run.sh
 
 abc*
 build/
+icpc_set
+in.txt
+out.txt
+ans.txt
